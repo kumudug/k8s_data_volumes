@@ -14,4 +14,4 @@ spec:
     spec: 
       containers: 
         - name: story
-          image: kumudug/kub-data-demo
+          image: kumudug/kub-data-demo:1
