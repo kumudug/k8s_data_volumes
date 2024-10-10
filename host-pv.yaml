@@ -1,0 +1,19 @@
+# Persistent volume example
+# We are gonna use hostPath but remember hostPath is only valid in single node cluster. Will not work in a multi node cluster
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: host-pv
+spec:
+  capacity:
+    storage: 1Gi # Uptp 1GB of space can be used
+  volumeMode: Block # Block or Filesystem. Filesystem is default
+  accessModes: # You can define all modes allowed. You specify what mode you want when you claim a volume
+    - ReadWriteOnce
+    - ReadOnlyMany # Not available for hostPath cause it needs multiple nodes
+    - ReadWriteMany # Not available for hostPath cause it needs multiple nodes
+    - ReadWriteOncePod
+  hostPath:
+    path: /data # directory location on host
+    type: DirectoryOrCreate # this field is optional
+
