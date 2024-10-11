@@ -8,11 +8,12 @@ spec:
   capacity:
     storage: 1Gi # Uptp 1GB of space can be used
   volumeMode: Block # Block or Filesystem. Filesystem is default
+  storageClassName: standard
   accessModes: # You can define all modes allowed. You specify what mode you want when you claim a volume
     - ReadWriteOnce
     - ReadOnlyMany # Not available for hostPath cause it needs multiple nodes
     - ReadWriteMany # Not available for hostPath cause it needs multiple nodes
-    - ReadWriteOncePod
+    # - ReadWriteOncePod - Forbidden: may not use ReadWriteOncePod with other access modes
   hostPath:
     path: /data # directory location on host
     type: DirectoryOrCreate # this field is optional
